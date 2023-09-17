@@ -1,0 +1,41 @@
+<h1 class="add">Agregar producto</h1>
+<form id="idForms">
+    <label for="title"><p>Título</p></label>
+    <input type="text" required name="title">
+
+    <label for="description"><p>Descripción</p></label>
+    <input type="text" required name="description">
+
+    <label for="price"><p>Precio</p></label>
+    <input type="price" required name="price">
+
+    <label for="thumbnail"><p>Imágen</p></label>
+    <input type="text"  name="thumbnail">
+    
+    <label for="code"><p>Código Personal</p></label>
+    <input type="text" required name="code">
+
+    <label for="stock"><p>Stock</p></label>
+    <input type="number" required name="stock">
+
+    <label for="category"><p>Categoría</p></label>
+    <input type="text" required name="category">
+
+    <button type="submit">Enviar producto</button>
+</form>
+
+
+<p class="listd">Listado de Productos</h2>
+<div id="listProd">
+    {{#each products}}
+    <div class="prods">
+        <h2>{{title}}</h2>
+        <p>CAT: {{category}} REF: {{code}} </p>
+        <h4>{{description}}</h4>
+        <p>Stock: {{stock}}</p>
+    </div>
+    {{/each}}
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="../public/js/realTimeProducts.js"></script>

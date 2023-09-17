@@ -4,14 +4,14 @@ const messageSchema = new Schema({
     user: {
         type: String, 
         require: true, 
-        unique: true,
     }, 
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
     },
-    menssage: String
+    message: String,
+    },
+    {versionKey: false})
     
-})
 
 export const messageModel = model('messages', messageSchema);

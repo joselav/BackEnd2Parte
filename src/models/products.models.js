@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { paginate } from "mongoose-paginate-v2";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const productsSchema = new Schema({
     title: {
@@ -28,9 +28,10 @@ const productsSchema = new Schema({
         type: String, 
         required: true
     },
-    status:{type: Boolean, default: true}
-})
+    status:{type: Boolean, default: true},
+    
+}, {versionKey: false});
 
-productsSchema.plugin(paginate)
+productsSchema.plugin(mongoosePaginate)
 
 export const productsModel = model('products', productsSchema);

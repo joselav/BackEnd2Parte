@@ -1,0 +1,104 @@
+*{
+    background-color: antiquewhite;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ls {
+    color: rgb(87, 50, 28);
+    text-align: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.listd {
+    text-align: center;
+    color: rgb(87, 50, 28);
+    font-size: 30px;
+    font-weight: 700;
+    padding: 15px;
+}
+#listProd {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 90%;
+    margin: auto;
+}
+
+.prods {
+    width: 90%;
+    height: 190px;
+    margin: 15px auto;
+    padding: 15px;
+    background-color: antiquewhite;
+    border: .3px solid rgb(71, 33, 0);
+    border-radius: 18px;
+}
+
+.prods h2 {
+    color: rgb(60, 34, 1);
+    text-align: center;
+    font-size: 30px;
+    padding: 5px;
+}
+
+.prods p {
+    color: rgb(146, 84, 48);
+    text-align: center;
+    font-size: 16px;
+    padding: 3px;
+}
+
+.prods h4{ 
+    color: rgb(77, 35, 11);
+    font-size: 20px;
+    text-align: center;
+}
+
+.add{
+    color: rgb(87, 50, 28);
+    text-align: center;
+    padding: 20px;
+    margin: auto;
+}
+
+#idForms {
+    width: 480px;
+    margin: auto;
+    background-color: rgb(244, 222, 194);
+    padding: 30px;
+}
+
+label p {
+    color: rgb(60, 34, 1);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px;
+    background-color: rgb(244, 222, 194);
+}
+
+input{
+    padding: 6px;
+    background-color: rgb(253, 237, 216);
+    border-radius: 13px;
+    border: 1px solid rgb(60, 34, 1);
+}
+
+button {
+    margin: auto;
+    margin-top: 20px;
+    padding: 8px;
+    background-color: rgb(60, 34, 1);
+    color: rgb(244, 222, 194);
+    border-radius: 13px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: rgb(244, 222, 194);
+    color:  rgb(60, 34, 1);
+    font-weight: 600;
+}

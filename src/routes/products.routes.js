@@ -7,8 +7,6 @@ appRouter.get('/', async (req,res)=>{
   const {limit} = req.query;
 
   try{
-    //const prod = await productsModel.find().limit(limit)
-
     const prod = await productsModel.paginate({category: 'starwars'}, {limit: 10, page:1})
     res.status(200).send({respuesta:'Se ha encontrado el producto', mensaje: prod})
 
