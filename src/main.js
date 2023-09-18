@@ -45,7 +45,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 //MONGO
-mongoose.connect('mongodb+srv://josefinalavinia05:1234Coder@cluster0.f5zhko4.mongodb.net/?retryWrites=true&w=majority',  {
+mongoose.connect('mongodb+srv://josefinalavinia05:<contraseña>@cluster0.f5zhko4.mongodb.net/?retryWrites=true&w=majority',  {
   useNewUrlParser: true,
   useUnifiedTopology: true, // Agrega esta línea
 })
