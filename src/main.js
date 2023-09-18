@@ -21,6 +21,7 @@ import {dirname} from 'path';
 
 //socket
 import { Server } from 'socket.io';
+import { resourceLimits } from 'worker_threads';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,7 +45,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 //MONGO
-mongoose.connect('mongodb+srv://josefinalavinia05:<contraseña>@cluster0.f5zhko4.mongodb.net/?retryWrites=true&w=majority',  {
+mongoose.connect('mongodb+srv://josefinalavinia05:1234Coder@cluster0.f5zhko4.mongodb.net/?retryWrites=true&w=majority',  {
   useNewUrlParser: true,
   useUnifiedTopology: true, // Agrega esta línea
 })
@@ -74,9 +75,11 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/chat', (req,res)=>{
+app.get('/api/messages/chat', (req,res)=>{
   res.render('chat', {styles: 'estilos.css', js: 'chat.js'});
-})
+});
+
+
 
 
 io.on('connection', (socket) => {
@@ -86,23 +89,57 @@ io.on('connection', (socket) => {
       const { user, message } = data;
 
       if (user && message) {
-          // Guardar el mensaje en MongoDB
+          
           try {
-              await messageModel.create({ user, message });
-              console.log('Mensaje guardado en MongoDB');
+            const userExist = await messageModel.findOne({user});
+
+          if(userExist){
+            userExist.messages.push({
+              date: new Date(),
+              message,
+            });
+    
+            await userExist.save();
+            console.log('Mensaje guardado en MongoDB');
+          }else { await messageModel.create({ user, message });
+          console.log('Mensaje guardado en MongoDB');}
+             
           } catch (error) {
               console.error('Error al guardar el mensaje en MongoDB:', error);
           }
 
-          // Enviar el mensaje a todos los clientes conectados con el nombre de usuario
+         
           io.emit('Message', {
               user,
               date: new Date(),
               message,
           });
+
       } else {
           console.log('Datos de usuario o mensaje no válidos');
       }
   });
 
+  socket.on("newProduct", async (newProd) => {
+    const {title, description, price, thumbnail, code, stock, category} =  newProd
+    await productsModel.create({ title, description, price, thumbnail, code, stock, category});
+    console.log('Mensaje guardado en MongoDB');
+
+    socket.emit('prod', newProd)
 });
+
+});
+
+app.get('/realtimeproducts', async (req,res)=>{
+  try {
+    const prodActive = await productsModel.find({ status: true }).lean();
+    console.log(prodActive)
+    res.render('realTimeProducts',{products:prodActive, styles:'estilos.css', js:'realTimeProducts.js'})
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+  
+})
+
+

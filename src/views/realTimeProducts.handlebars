@@ -1,25 +1,25 @@
 <h1 class="add">Agregar producto</h1>
 <form id="idForms">
     <label for="title"><p>Título</p></label>
-    <input type="text" required name="title">
+    <input type="text" required name="title" id="title">
 
     <label for="description"><p>Descripción</p></label>
-    <input type="text" required name="description">
+    <input type="text" required name="description" id="description">
 
     <label for="price"><p>Precio</p></label>
-    <input type="price" required name="price">
+    <input type="price" required name="price" id="price">
 
     <label for="thumbnail"><p>Imágen</p></label>
-    <input type="text"  name="thumbnail">
+    <input type="text"  name="thumbnail" id="thumbnail">
     
     <label for="code"><p>Código Personal</p></label>
-    <input type="text" required name="code">
+    <input type="text" required name="code" id="code">
 
     <label for="stock"><p>Stock</p></label>
-    <input type="number" required name="stock">
+    <input type="number" required name="stock" id="stock">
 
     <label for="category"><p>Categoría</p></label>
-    <input type="text" required name="category">
+    <input type="text" required name="category" id="category">
 
     <button type="submit">Enviar producto</button>
 </form>
@@ -38,4 +38,3 @@
 </div>
 
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-<script src="../public/js/realTimeProducts.js"></script>

@@ -32,6 +32,8 @@ cartRouter.get('/:cid', async (req, res)=>{
   }catch(error){res.status(400).send({respuesta: 'No se ha logrado encontrar el carrito', mensaje: error})}
 })
 
+
+
 cartRouter.post('/:cid/products/:pid', async (req,res)=> {
   const {cid, pid} = req.params;
   const {quantity} = req.body;
@@ -39,13 +41,14 @@ cartRouter.post('/:cid/products/:pid', async (req,res)=> {
   try{
     const cart = await cartModel.findById(cid);
 
-    if(!cart){res.status(404).send({respuesta:'No se ha encontrado el id', mensaje: "Id no encontrado"})}
+    if(!cart){res.status(404).send({respuesta:'No se ha encontrado el id', mensaje: "Id no encontrado"});
+  return;}
 
 
       const prod = await productsModel.findById(pid);
       
       if(prod){
-        const index = cart.products.findIndex((prod)=> prod.id_prod.toString() === pid)
+        const index = cart.products.findIndex((prod)=> prod.id_prod.equals(pid))
         if(index !== -1){
           cart.products[index].quantity = quantity;
         }else {

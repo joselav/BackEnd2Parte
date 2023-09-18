@@ -4,12 +4,15 @@ const messageSchema = new Schema({
     user: {
         type: String, 
         require: true, 
+        unique:true
     }, 
-    date: {
-        type: Date,
-        default: Date.now,
-    },
-    message: String,
+    messages: [{
+        date: {
+            type: Date,
+            default: Date.now,
+        },
+        message: String,
+    }]
     },
     {versionKey: false})
     

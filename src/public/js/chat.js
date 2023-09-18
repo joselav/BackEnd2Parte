@@ -22,6 +22,7 @@ btnChat.addEventListener('click',()=> {
     const message = messagesBox.value.trim();
 
     if(message !== ''){
+
         socket.emit('chatMessages', {user, message});
         messagesBox.value = '';
     }
